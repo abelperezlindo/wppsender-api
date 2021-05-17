@@ -55,7 +55,7 @@ app.get('/cron/stop', async (req, res) => {
     res.json({cronStatus: global.cronStatus});
 });
 // Obtener qr para nueva sesion
-app.get('/session/new', async (req, res) => {
+app.get('/session/qr', async (req, res) => {
     console.log('reqest to qr');
     console.log('QR is: ', global.qr);
     res.setHeader('Content-Type', 'application/json');
@@ -96,19 +96,6 @@ app.get('/session/new', async (req, res) => {
     res.json(response);
 });
 
-app.get('message/:id', (req, res) => {
-    const { id } = req.params;
-    let response = getMessageInQueue(id);
-    res.json(response);
-});
-app.get('session/:number', (req, res) => {
-    res.json({mensaje: 'sessions'})
-
-});
-app.post('message', (req, res) => {
-    res.json({mensajes: 'blalbla'})
-    
-});
 
 //Start the server
 app.listen(app.get('port'), () => {

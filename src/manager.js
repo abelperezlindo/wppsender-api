@@ -115,18 +115,7 @@ async function loadClient(session){
     });
     return client;
 };
-async function getMessageInQueue(id){
-    if(typeof id === 'undefined') return;
-    try{
-        const row = await pool.query(`SELECT id, destino, mensaje, enviado, anulado, DATE_FORMAT(fecha_enviado,'%d/%m/%Y %h:%i hs') AS fecha_enviado, DATE_FORMAT(fecha_anulado,'%d/%m/%Y %h:%i hs') AS fecha_anulado, sender FROM io_turno_mensaje tm WHERE  tm.id = ${id} ORDER BY tm.prioridad DESC, tm.fecha_alta` );
-        if(row[0] === undefined) return;
-        return row;
 
-    } catch(err){
-        console.log(err);
-        return false;
-    }
-};
 async function getMessagesInQueue(){
    
     try{
