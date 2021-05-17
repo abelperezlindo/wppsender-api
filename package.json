@@ -1,0 +1,24 @@
+{
+  "name": "wppsender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "const": "^1.0.0",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "node-cron": "^3.0.0",
+    "path": "^0.12.7",
+    "qr-image": "^3.2.0",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.12.6"
+  }
+}
