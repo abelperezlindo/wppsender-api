@@ -59,41 +59,27 @@ app.get('/session/qr', async (req, res) => {
     console.log('reqest to qr');
     console.log('QR is: ', global.qr);
     res.setHeader('Content-Type', 'application/json');
-    let response;
-    if (global.awaitForQr && global.qr.length === 0){
-        // Esperamos que se cargue
-        response = {
-            status: 'loading',
-            description: 'Await for qr, reload in a moment',
-            qr: ''
-        };
-        res.json(response);
-        return;
-    }
 
     if(!global.awaitForQr && global.qr.length === 0) {
         // Solicitamos el qr
         global.awaitForQr = true;
         console.log('Creat client');
-        await manager.createClient();
-        await helper.sleep(1000);
-
-        response = {
+        manager.createClient();
+        //await helper.sleep(1000);
+        //res.send('tabueno');
+        res.json({
             status: 'loading',
             description: 'Await for qr',
             qr: '',
-        }; 
-        res.json(response);
-        return;
+        }); 
+    } else {
+        res.json({
+            status: 'load',
+            description: 'Qr is load',
+            qr: global.qr
+        });
     }
 
-    // Mostramos el qr ya generado
-    response = {
-        status: 'load',
-        description: 'Qr is load',
-        qr: global.qr
-    };
-    res.json(response);
 });
 
 
